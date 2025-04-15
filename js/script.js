@@ -59,6 +59,16 @@ document.addEventListener("DOMContentLoaded", function () {
         headerBody.classList.toggle("active");
     });
 
+    const headerLinks = document.querySelectorAll(".header__item>a");
+    for (let i = 0; i < headerLinks.length; i++) {
+        headerLinks[i].addEventListener("click", function (event) {
+            event.preventDefault();
+            body.classList.remove("header-lock");
+            headerMenu.classList.remove("active");
+            headerBody.classList.remove("active");
+        });
+    }
+
     const orangeText = document.querySelector(".hero__title>h1.orange");
     const texts = orangeText.dataset.texts.split(";").slice(0, -1);
     
@@ -99,6 +109,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const whomItems = document.querySelectorAll('.whom__item');
     const blockColumns = document.querySelectorAll(".nums__item");
     const futureImages = document.querySelectorAll(".future-item__img");
+    const startItems = document.querySelectorAll(".start__item");
+    const stepItems = document.querySelectorAll(".steps__item");
+    const advantageItems = document.querySelectorAll(".advantage__item");
+    const projectItems = document.querySelectorAll(".projects__item");
+    const feedbackItems = document.querySelectorAll(".feedbacks__item");
     whomItems.forEach((item, index) => {
         item.style.transitionDelay = `${index * 0.2}s`;
     });
@@ -106,6 +121,21 @@ document.addEventListener("DOMContentLoaded", function () {
         item.style.transitionDelay = `${index * 0.2}s`;
     });
     futureImages.forEach((item, index) => {
+        item.style.transitionDelay = `${index * 0.2}s`;
+    });
+    startItems.forEach((item, index) => {
+        item.style.transitionDelay = `${index * 0.2}s`;
+    });
+    stepItems.forEach((item, index) => {
+        item.style.transitionDelay = `${index * 0.2}s`;
+    });
+    advantageItems.forEach((item, index) => {
+        item.style.transitionDelay = `${index * 0.2}s`;
+    });
+    projectItems.forEach((item, index) => {
+        item.style.transitionDelay = `${index * 0.2}s`;
+    });
+    feedbackItems.forEach((item, index) => {
         item.style.transitionDelay = `${index * 0.2}s`;
     });
 
@@ -155,4 +185,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("load", increment);
     window.addEventListener("scroll", increment);
+
+    const openForm = document.querySelector(".questions__button>button");
+    const formPopup = document.querySelector(".form");
+
+    openForm.addEventListener("click", function () {
+        body.classList.add("lock");
+        formPopup.classList.add("open");
+    });
+
+    formPopup.addEventListener("click", function (event) {
+        if (!event.target.closest(".form form")) {
+            body.classList.remove("lock");
+            formPopup.classList.remove("open");
+        }
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.which == 27) {
+            body.classList.remove("lock");
+            formPopup.classList.remove("open");
+        }
+    });
+
+    const whomLink = document.querySelector(".header__item #whom");
+    const startLink = document.querySelector(".header__item #start");
+    const advantageLink = document.querySelector(".header__item #advantage");
+    const projectsLink = document.querySelector(".header__item #projects");
+    const feedbacksLink = document.querySelector(".header__item #feedbacks");
+
+    const targetWhom = document.querySelector(".whom");
+    const targetStart = document.querySelector(".start");
+    const targetAdvantage = document.querySelector(".advantage");
+    const targetProjects = document.querySelector(".projects");
+    const targetFeedbacks = document.querySelector(".feedbacks");
+
+    whomLink.addEventListener('click', function() {
+        targetWhom.scrollIntoView({ behavior: 'smooth' });
+    });
+    startLink.addEventListener('click', function() {
+        targetStart.scrollIntoView({ behavior: 'smooth' });
+    });
+    advantageLink.addEventListener('click', function() {
+        targetAdvantage.scrollIntoView({ behavior: 'smooth' });
+    });
+    projectsLink.addEventListener('click', function() {
+        targetProjects.scrollIntoView({ behavior: 'smooth' });
+    });
+    feedbacksLink.addEventListener('click', function() {
+        targetFeedbacks.scrollIntoView({ behavior: 'smooth' });
+    });
 });
